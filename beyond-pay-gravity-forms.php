@@ -6,7 +6,12 @@
  * Author: Beyond
  * Author URI: https://getbeyond.com
  * Version: 1.1.1
- * Text Domain: beyond-pay
+ * Text Domain: beyond-pay-for-gravityforms
+ * Tested up to: 5.8.0
+ * 
+ * Copyright (c) 2020 Above and Beyond Business Tools and Services for Entrepreneurs, Inc.
+ *
+ * Review the LICENSE file for licensing information.
  */
 
 GFForms::include_payment_addon_framework();
