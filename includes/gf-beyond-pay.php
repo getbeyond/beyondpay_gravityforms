@@ -175,7 +175,8 @@ class GFBeyondPay extends GFPaymentAddOn {
 			'class' => 'large beyond_pay_styling',
 			'tooltip' => 'You can set the CSS rules here which will '
 			. 'apply to the payment fields.',
-			'default_value' => file_get_contents(dirname(__DIR__).'/assets/payment-styling.css')
+			'default_value' => file_get_contents(dirname(__DIR__).'/assets/payment-styling.css'),
+			'allow_html' => true
 		    ),
                 )
             )
