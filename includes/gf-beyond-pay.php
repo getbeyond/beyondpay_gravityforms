@@ -1,6 +1,6 @@
 <?php
 class GFBeyondPay extends GFPaymentAddOn {
-    protected $_version = "1.1.0";
+    protected $_version = "1.1.1";
     protected $_min_gravityforms_version = "2.4.19";
     protected $_slug = 'beyond-pay-gravity-forms';
     protected $_path = 'beyond-pay-gravity-forms/beyond-pay-gravity-forms.php';
@@ -175,7 +175,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 			'class' => 'large beyond_pay_styling',
 			'tooltip' => 'You can set the CSS rules here which will '
 			. 'apply to the payment fields.',
-			'default_value' => file_get_contents(dirname(__DIR__).'/assets/payment-styling.css'),
+			'default_value' => file_get_contents(dirname(__DIR__).'/assets/css/payment-styling.css'),
 			'allow_html' => true
 		    ),
                 )
@@ -184,7 +184,7 @@ class GFBeyondPay extends GFPaymentAddOn {
     }
     
     public function scripts() {
-	$assets_dir = dirname($this->get_base_url()) . '/assets/';
+	$assets_dir = dirname($this->get_base_url()) . '/assets/js/';
 	$test_mode = !empty($this->get_plugin_setting('enable-test-mode'));
 	$public_key = $this->get_plugin_setting(($test_mode ? 'test_' : '').'public_key');
 

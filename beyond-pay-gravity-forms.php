@@ -21,7 +21,7 @@ function load_beyond_pay_gf() {
 	
 	/** Check if the class wasn't loaded by a different plugin */
 	if(!class_exists('BeyondPay\\BeyondPayRequest')) {
-	    require( dirname(__FILE__) . '/includes/BeyondPay.php' );
+	    require( dirname(__FILE__) . '/includes/beyond-pay.php' );
 	}
         require_once( dirname(__FILE__) . '/includes/gf-beyond-pay.php');
         require_once( dirname(__FILE__) . '/includes/gf-field-beyond-pay.php');
