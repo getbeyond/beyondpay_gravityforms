@@ -59,6 +59,10 @@ class GFBeyondPay extends GFPaymentAddOn {
 	return $out;
     }
     
+    public function get_menu_icon() {
+	return 'gform-icon--credit-card';
+    }
+    
     public function plugin_settings_fields() {
         return array(
             array(

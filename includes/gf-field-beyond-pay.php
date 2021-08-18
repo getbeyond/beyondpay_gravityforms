@@ -3,6 +3,10 @@ class GF_Field_Beyond_Pay extends GF_Field {
     public $type = 'beyond_pay';
     public $inputs = ['beyond_pay_token'];
     
+    public function get_form_editor_field_icon() {
+	return 'gform-icon--credit-card';
+    }
+    
     public function get_form_editor_field_title() {
 	return esc_attr__( 'Credit Card', 'gravityforms' );
     }
