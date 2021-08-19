@@ -489,7 +489,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 	$html = str_replace('type="text"','type="password"',$this->settings_text($field, false));
 
 	if($echo){
-	    echo $html;
+	    echo esc_html($html);
 	}
 	return $html;
     }

@@ -40,7 +40,7 @@ function load_beyond_pay_gf() {
 	    if(!empty($order_id)){ ?>
 		<div id="gf_beyond_pay_invnum" class="gf_payment_detail">
 			Beyond Pay Invoice Num:
-			<span id='gform_beyond_pay_invnum'><?php echo $order_id; ?></span>
+			<span id='gform_beyond_pay_invnum'><?php echo esc_html($order_id); ?></span>
 		</div><?php 
 	    }
 	    if($requires_capture && $entry['payment_status'] === 'Authorized'){
