@@ -31,7 +31,7 @@ class GF_Field_Beyond_Pay extends GF_Field {
 	$is_custom_css = $bp->get_plugin_setting('use-custom-styling');
 	$css = $is_custom_css ? 
 		$bp->get_plugin_setting('styling') : 
-		file_get_contents(dirname(__DIR__).'/assets/payment-styling.css');
+		file_get_contents(dirname(__DIR__).'/assets/css/payment-styling.css');
 	
 	$out = 
 	    (empty($css) ? '' : '<div style="display: none" id="beyondPayStyles">'.$css.'</div>')
