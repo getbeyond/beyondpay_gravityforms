@@ -5,9 +5,9 @@
  * Description: Beyond Pay credit card payments with Gravity Forms
  * Author: Beyond
  * Author URI: https://getbeyond.com
- * Version: 1.1.1
+ * Version: 1.1.3
  * Text Domain: beyond-pay-for-gravityforms
- * Tested up to: 5.8.0
+ * Tested up to: 6.0
  * 
  * Copyright (c) 2020 Above and Beyond Business Tools and Services for Entrepreneurs, Inc.
  *

@@ -2,8 +2,8 @@
 Contributors: beyondpay
 Tags: credit card, payment, gravity forms, payment gateway, donation
 Requires at least: 4.7
-Tested up to: 5.8
-Stable tag: 1.1.1
+Tested up to: 6.0
+Stable tag: 1.1.3
 Requires PHP: 7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
@@ -111,6 +111,12 @@ Contact [BeyondPayIntegrations@getbeyond.com](mailto:BeyondPayIntegrations@getbe
 5. Entries screen - Payment Details
 
 == Changelog ==
+
+= 1.1.3 =
+* Updated tested up to tag.
+
+= 1.1.2 =
+* Fixed an issue with stylesheet link.
 
 = 1.1.1 =
 * Initial public release.
