@@ -135,5 +135,11 @@ Contact [BeyondPayIntegrations@getbeyond.com](mailto:BeyondPayIntegrations@getbe
 
 ## Changelog
 
+### 1.1.3 
+* Updated tested up to tag.
+
+### 1.1.2 
+* Fixed an issue with stylesheet link.
+
 ### 1.1.1
 * Initial public release. 
