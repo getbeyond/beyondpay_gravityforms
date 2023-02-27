@@ -2,8 +2,8 @@
 Contributors: beyondpay
 Tags: credit card, payment, gravity forms, payment gateway, donation
 Requires at least: 4.7
-Tested up to: 6.0
-Stable tag: 1.1.3
+Tested up to: 6.1.1
+Stable tag: 1.2.1
 Requires PHP: 7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
@@ -29,7 +29,7 @@ Securely accept credit cards directly from [Gravity Forms](https://gravityforms.
 1. From your WordPress **/wp-admin** page, navigate to **Gravity Forms > Settings**.
 1. Select the **Beyond Pay** tab on the left navigation bar.
 1. Proceed to configure payment method options available on this page (see [screenshot](#beyond-pay-for-gravity-forms-configuration-settings)):
-  - **Enable Test Mode** - controls whether transactions are sent to the Test/Sandbox or the Live/Production Beyond Pay Gateway environment and which type of API keys are expected; defaults to Live    
+  - **Enable Test Mode** - controls whether transactions are sent to the Test/Sandbox or the Live/Production Beyond Pay Gateway environment and which type of API keys are expected; defaults to Live
   - **PublicKey, PrivateKey, Username, Password, MerchantCode,** and **MerchantAccountCode** - these are the credentials by which the plugin authenticates to the Beyond Pay Gateway in order to process payments; for Test Mode, you can [request Beyond Pay Gateway sandbox API keys](https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk7yRG7q939HJFkFXKp4lfZo1URUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNSQlQCN0PWcu) while live credentials are provided by Beyond once the merchant processing account is approved
   - **Transaction Mode** - controls how authorizations and payment captures are managed
     - Set this to ***Authorization*** to perform only an authorization ("pre-auth") when the form is submitted, which requires the **Capture Payment** button on the Gravity Forms "Entries" page be clicked in order for the payment to be captured (usually when an order is shipped)
@@ -86,7 +86,7 @@ There are 2 primary ways to install this plugin: **Automatic** or **Manual**
 
 = Is it secure and/or compliant to accept credit cards directly on my website? =
 
-Yes! Beyond Pay Gateway secures card data by hosting the actual payment fields and presenting them in an iframe so that the fields only *appear* to be part of Gravity Forms. 
+Yes! Beyond Pay Gateway secures card data by hosting the actual payment fields and presenting them in an iframe so that the fields only *appear* to be part of Gravity Forms.
 
 Once card data is collected, then the information is further secured by *tokenization*: a process in which the sensitive card data is exchanged for a non-sensitive representation, or "token." This ensures that cardholder data is not sent from the consumer's browser to the merchant's web server, and only the surrogate token value comes into contact with the merchant's systems.
 
@@ -111,6 +111,9 @@ Contact [BeyondPayIntegrations@getbeyond.com](mailto:BeyondPayIntegrations@getbe
 5. Entries screen - Payment Details
 
 == Changelog ==
+
+= 1.2.1 =
+* Updated to support WordPress 6.1.1 and Gravity Forms 2.7
 
 = 1.1.3 =
 * Updated tested up to tag.
