@@ -30,13 +30,13 @@ class GFBeyondPay extends GFPaymentAddOn {
 
 	return self::$_instance;
     }
-    
+
     public function init() {
 	parent::init();
 	add_action('gform_post_payment_action', array($this, 'update_entry_payment_info'), 10, 2);
 	add_filter('gform_validation_message', array($this, 'add_payment_error_description'), 10, 1 );
     }
-    
+
     public function init_admin() {
 	parent::init_admin();
 	add_filter('gform_enable_credit_card_field', '__return_false');
@@ -49,7 +49,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 		foreach($section['fields'] as &$field){
 		    if($field['name'] === 'transactionType'){
 			$field['choices'] = array_filter(
-			    $field['choices'], 
+			    $field['choices'],
 			    function ($v) {return $v['value']!=='subscription';}
 			);
 		    }
@@ -58,11 +58,11 @@ class GFBeyondPay extends GFPaymentAddOn {
 	}
 	return $out;
     }
-    
+
     public function get_menu_icon() {
 	return 'gform-icon--credit-card';
     }
-    
+
     public function plugin_settings_fields() {
         return array(
             array(
@@ -81,13 +81,16 @@ class GFBeyondPay extends GFPaymentAddOn {
 			'name'  => 'test_public_key',
 			'label' => 'Test Public Key',
 			'type' => 'text',
-			'class' => 'beyond_pay_setting_test_only'
+			'class' => 'beyond_pay_setting_test_only',
+            'size' => '50',
 		    ),
 		    array(
 			'name' => 'test_private_key',
 			'label' => 'Test Private Key',
-			'type' => 'password',
-			'class' => 'beyond_pay_setting_test_only'
+			'type' => 'text',
+            'input_type' => 'password',
+			'class' => 'beyond_pay_setting_test_only',
+            'size' => '50',
 		    ),
 		    array(
 			'name' => 'test_login',
@@ -98,20 +101,24 @@ class GFBeyondPay extends GFPaymentAddOn {
 		    array(
 			'name'  => 'test_password',
 			'label' => 'Test Password',
-			'type' => 'password',
+			'type' => 'text',
+            'input_type' => 'password',
 			'class' => 'beyond_pay_setting_test_only'
 		    ),
 		    array(
 			'name' => 'public_key',
 			'label' => 'Live Public Key',
 			'type' => 'text',
-			'class' => 'beyond_pay_setting_live_only'
+			'class' => 'beyond_pay_setting_live_only',
+            'size' => '50',
 		    ),
 		    array(
 			'name'  => 'private_key',
 			'label' => 'Live Private Key',
-			'type' => 'password',
-			'class' => 'beyond_pay_setting_live_only'
+            'type' => 'text',
+            'input_type' => 'password',
+			'class' => 'beyond_pay_setting_live_only',
+            'size' => '50',
 		    ),
 		    array(
 			'name'  => 'login',
@@ -122,7 +129,8 @@ class GFBeyondPay extends GFPaymentAddOn {
 		    array(
 			'name'  => 'password',
 			'label' => 'Live Password',
-			'type' => 'password',
+			'type' => 'text',
+			'input_type' => 'password',
 			'class' => 'beyond_pay_setting_live_only'
 		    ),
 		    array(
@@ -186,7 +194,7 @@ class GFBeyondPay extends GFPaymentAddOn {
             )
         );
     }
-    
+
     public function scripts() {
 	$assets_dir = dirname($this->get_base_url()) . '/assets/js/';
 	$test_mode = !empty($this->get_plugin_setting('enable-test-mode'));
@@ -248,16 +256,16 @@ class GFBeyondPay extends GFPaymentAddOn {
                     )
                 )
             )
- 
+
         );
- 
+
         return array_merge( parent::scripts(), $scripts );
     }
-    
+
     public function authorize( $feed, $submission_data, $form, $entry ) {
 	$amount = $submission_data['payment_amount'];
 	$token = rgpost('beyond_pay_token');
-	
+
 	$request = new \BeyondPay\BeyondPayRequest();
 	$request->RequestType = "004";
 	$request->TransactionID = time();
@@ -271,14 +279,14 @@ class GFBeyondPay extends GFPaymentAddOn {
 	$request->requestMessage = new \BeyondPay\RequestMessage();
 	$request->requestMessage->TransIndustryType = "EC";
 
-	$transaction_mode = $this->get_plugin_setting('transaction_mode') === 'sale' 
-		? 'sale' 
+	$transaction_mode = $this->get_plugin_setting('transaction_mode') === 'sale'
+		? 'sale'
 		: 'sale-auth';
 	$request->requestMessage->TransactionType = $transaction_mode;
 	$request->requestMessage->AcctType = "R";
 	$request->requestMessage->Amount = round($amount * 100);
 	$request->requestMessage->HolderType = "O";
-	
+
 	$request->requestMessage->AccountHolderName = trim($submission_data['name']);
 	$request->requestMessage->AccountStreet = trim($submission_data['address']);
 	if(!empty($submission_data['zip'])) {
@@ -314,7 +322,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 		    continue;
 		}
 		$item_count += $i['quantity'];
-		
+
 		$itemParsed = new \BeyondPay\Item();
 		$itemParsed->ItemCode = "1234";
 		$itemParsed->ItemCommodityCode = "1234";
@@ -329,11 +337,11 @@ class GFBeyondPay extends GFPaymentAddOn {
 	    $request->requestMessage->ItemCount = $item_count === 0 ? 1 : $item_count;
 	    $request->requestMessage->Item = $itemsParsed;
 	}
-	
+
 	$conn = new \BeyondPay\BeyondPayConnection();
-	
+
 	$api_url = $test_mode ?
-	    "https://api-test.getbeyondpay.com/paymentservice/requesthandler.svc" : 
+	    "https://api-test.getbeyondpay.com/paymentservice/requesthandler.svc" :
 	    "https://api.getbeyondpay.com/PaymentService/RequestHandler.svc";
 	try{
 	    $response = $conn->processRequest($api_url, $request);
@@ -382,7 +390,7 @@ class GFBeyondPay extends GFPaymentAddOn {
     public function option_choices() {
 	return [];
     }
-    
+
     public function billing_info_fields() {
 
 	$fields = array(
@@ -394,12 +402,12 @@ class GFBeyondPay extends GFPaymentAddOn {
 
 	return $fields;
     }
-    
+
     public function get_credit_card_field( $form ) {
 	$fields = GFAPI::get_fields_by_type( $form, array( 'beyond_pay' ) );
 	return empty( $fields ) ? false : $fields[0];
     }
-    
+
     public function update_entry_payment_info($entry, $payment_result = array()){
 	if (
 	    isset($payment_result['beyond_pay_transaction_mode']) &&
@@ -412,7 +420,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 	    gform_update_meta( $entry['id'], 'beyond_pay_order_id', $payment_result['beyond_pay_order_id'], $entry['form_id']);
 	    $form = GFAPI::get_form( $entry['form_id'] );
             $ccField = $this->get_credit_card_field($form);
-	    $cc_description = 
+	    $cc_description =
 		    $payment_result['card_type'].
 		    ' ************'.substr($payment_result['pan_token'],-4).
 		    ' Exp: '.substr($payment_result['cc_expiry'],0,2).'/'.substr($payment_result['cc_expiry'],-2);
@@ -423,7 +431,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 	    GFAPI::update_entry($entry);
         }
     }
-    
+
     public function capture_authorised_payment(){
 	$form_id = rgpost('form_id');
 	$entry_id = rgpost('entry_id');
@@ -438,7 +446,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 	    $sub_data = $this->get_submission_data($feed, $form, $entry);
 	    $test_mode = !empty($this->get_plugin_setting('enable-test-mode'));
 	    $api_url = $test_mode ?
-		"https://api-test.getbeyondpay.com/paymentservice/requesthandler.svc" : 
+		"https://api-test.getbeyondpay.com/paymentservice/requesthandler.svc" :
 		"https://api.getbeyondpay.com/PaymentService/RequestHandler.svc";
 	    $login = $this->get_plugin_setting(($test_mode ? 'test_' : '').'login');
 	    $password = $this->get_plugin_setting(($test_mode ? 'test_' : '').'password');
@@ -493,7 +501,7 @@ class GFBeyondPay extends GFPaymentAddOn {
 	}
 	return $html;
     }
-    
+
     public function add_payment_error_description($message) {
 	if(!empty($this->response_error)){
 	    return "<div class='validation_error'>".$this->response_error."</div>";
