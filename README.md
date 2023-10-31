@@ -40,7 +40,7 @@ There are 2 primary ways to install this plugin: **Automatic** or **Manual**
 2. Select the **Beyond Pay** tab on the left navigation bar.
 3. Proceed to configure payment method options available on this page (see [screenshot](#beyond-pay-for-gravity-forms-configuration-settings)):
   - **Enable Test Mode** - controls whether transactions are sent to the Test/Sandbox or the Live/Production Beyond Pay Gateway environment and which type of API keys are expected; defaults to Live    
-  - **PublicKey, PrivateKey, Username, Password, MerchantCode,** and **MerchantAccountCode** - these are the credentials by which the plugin authenticates to the Beyond Pay Gateway in order to process payments; for Test Mode, you can [request Beyond Pay Gateway sandbox API keys](https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk7yRG7q939HJFkFXKp4lfZo1URUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNSQlQCN0PWcu) while live credentials are provided by Beyond once the merchant processing account is approved
+  - **PublicKey, PrivateKey, Username, Password, MerchantCode,** and **MerchantAccountCode** - these are the credentials by which the plugin authenticates to the Beyond Pay Gateway in order to process payments; for Test Mode, you can [request Beyond Pay Gateway sandbox API keys](https://forms.office.com/pages/responsepage.aspx?id=Q9V6UxGq3USJSkGsz2Jk7yRG7q939HJFkFXKp4lfZo1UMVBQWVNYSFBBNzJEV1k4Uko5WUU2NllBSCQlQCN0PWcu) while live credentials are provided by Beyond once the merchant processing account is approved
   - **Transaction Mode** - controls how authorizations and payment captures are managed
     - Set this to ***Authorization*** to perform only an authorization ("pre-auth") when the form is submitted, which requires the **Capture Payment** button on the Gravity Forms "Entries" page be clicked in order for the payment to be captured (usually when an order is shipped)
     - Set this to ***Sale*** to authorize and capture the payment immediately (usually used for donations, registration forms, or digital purchases)
@@ -83,7 +83,7 @@ Yes. All submission of sensitive payment data by the Beyond Pay is made via a se
 
 **Does this gateway plugin support a sandbox or test option?**
 
-Yes. For Test Mode, you can [request Beyond Pay Gateway sandbox API keys](https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk7yRG7q939HJFkFXKp4lfZo1URUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNSQlQCN0PWcu) while production (live) API keys are provided by Beyond once the merchant processing account is approved.
+Yes. For Test Mode, you can [request Beyond Pay Gateway sandbox API keys](https://forms.office.com/pages/responsepage.aspx?id=Q9V6UxGq3USJSkGsz2Jk7yRG7q939HJFkFXKp4lfZo1UMVBQWVNYSFBBNzJEV1k4Uko5WUU2NllBSCQlQCN0PWcu) while production (live) API keys are provided by Beyond once the merchant processing account is approved.
 
 **How can I get further support?**
 
